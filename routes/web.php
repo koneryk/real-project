@@ -1,24 +1,19 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BasicController;
-use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [BasicController::class,'index'])->name('home');
+Route::middleware('guest')->group(function () {
+    Route::get('/register',[AuthController::class,'showregisterform'])->name('register.form');
+    Route::post('/register',[AuthController::class,'register'])->name('register');
 
-Route::get('/about', [BasicController::class,'about'])->name('about');
+    Route::get('/',[AuthController::class,'showloginform'])->name('login.form');
+    Route::post('/',[AuthController::class,'login'])->name('login');
+});
 
-Route::get('/contact', [BasicController::class,'contact'])->name('contact');
-
-Route::post('/contact', [BasicController::class,'submit'])->name('contact.post');
-
-Route::get('/posts', [PostController::class,'index'])->name('posts');
-
-Route::get('/posts/{id}', [PostController::class,'show'])->name('posts.one');
-
-Route::get('/posts/{id}/edit', [PostController::class,'edit'])->name('posts.one.edit');
-Route::post('/posts/{id}/edit', [PostController::class,'update'])->name('posts.edit');
-Route::post('/posts/{id}/delete', [PostController::class,'delete'])->name('posts.one.delete');
-
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard',[BasicController::class,'main'])->name('main');
+});
 
 
