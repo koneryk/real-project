@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use function Pest\Laravel\json;
 
 class AuthController extends Controller
 {
@@ -25,8 +27,10 @@ class AuthController extends Controller
 
         $user = User::where('email',$email)->first();
         if(!$user || !Hash::check($password, $user->password)){
-            return http_response_code(401);
+            Auth::attempt(['email' => $email, 'password' => $password]);
+            return $request->session()->regenerate();
         }
+
         return redirect()->route("main");
 
     }

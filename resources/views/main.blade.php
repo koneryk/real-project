@@ -1,2 +1,1 @@
-<?php
-echo 'asdasdasd';
+<p>asdasd</p>
