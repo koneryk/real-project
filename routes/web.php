@@ -16,4 +16,3 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard',[BasicController::class,'main'])->name('main');
 });
 
-

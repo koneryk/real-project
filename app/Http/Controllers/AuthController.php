@@ -16,7 +16,6 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'name'=>'required',
             'email'=>'required|email',
             'password'=>'required'
 
@@ -26,12 +25,15 @@ class AuthController extends Controller
         $password = $_POST['password'];
 
         $user = User::where('email',$email)->first();
-        if(!$user || !Hash::check($password, $user->password)){
+        if(Hash::check($password, $user->password)){
             Auth::attempt(['email' => $email, 'password' => $password]);
-            return $request->session()->regenerate();
+            $request->session()->regenerate();
+            return redirect()->route('main');
         }
 
-        return redirect()->route("main");
+        return back()->withErrors([
+            'email' => 'Неверные учётные данные.',
+        ])->onlyInput('email');
 
     }
     public function showregisterform(){
@@ -49,7 +51,7 @@ class AuthController extends Controller
         $user->password = Hash::make($data['password']);
         $user->save();
 
-        return redirect()->route('login');
+        return redirect()->route('login.form');
     }
 
 }
