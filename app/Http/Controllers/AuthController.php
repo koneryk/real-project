@@ -28,13 +28,17 @@ class AuthController extends Controller
         if(Hash::check($password, $user->password)){
             Auth::attempt(['email' => $email, 'password' => $password]);
             $request->session()->regenerate();
-            return redirect()->route('main');
+            return redirect()->intended('/dashboard');
         }
 
         return back()->withErrors([
             'email' => 'Неверные учётные данные.',
         ])->onlyInput('email');
 
+    }
+    public function test()
+    {
+        return view('test');
     }
     public function showregisterform(){
         return view('auth.register');
@@ -52,6 +56,14 @@ class AuthController extends Controller
         $user->save();
 
         return redirect()->route('login.form');
+    }
+    public function logout(Request $request){
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 
 }

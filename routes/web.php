@@ -11,8 +11,12 @@ Route::middleware('guest')->group(function () {
     Route::get('/',[AuthController::class,'showloginform'])->name('login.form');
     Route::post('/',[AuthController::class,'login'])->name('login');
 });
-
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard',[BasicController::class,'main'])->name('main');
+    Route::get('/test',[BasicController::class,'test'])->name('test');
+    Route::post('/logout',[AuthController::class,'logout'])->name('logout');
+    Route::post('/dashboard',[BasicController::class,'submission'])->name('submission');
 });
+
+
 
