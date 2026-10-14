@@ -29,6 +29,7 @@
             <option>При очном посещении</option>
         </select>
         <button type="submit">Отправить</button>
+        <a class="submission" href="{{ route('submission.form') }}">Просмотр заявок</a>
     </form>
 </section>
 <footer><p>Делал, конечно же я</p></footer>

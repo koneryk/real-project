@@ -22,7 +22,7 @@
 </div>
 </section>
 <footer>
-
+А это прсмотр заявок
 </footer>
 </body>
 </html>
