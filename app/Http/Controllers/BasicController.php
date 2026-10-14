@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\submission;
+use App\Models\Submission;
 use Illuminate\Http\Request;
 
 class BasicController extends Controller
@@ -15,17 +15,20 @@ class BasicController extends Controller
     }
     public function submission(Request $request){
         $data = $request->validate([
-            'place' => 'required|min:3|max:20|array',
-            'time' => 'required',
-            'pay' => 'required|min:3|max:20',
+            'place' => 'required',
+            'time' => 'required|date_format:H:i',
+            'pay' => 'required',
         ]);
-        $submission = new Submission();
-        $submission->$data['place'];
-        $submission->$data['time'];
-        $submission->$data['pay'];
-        $submission->save();
+        $data['time'] .= ':00';
+        Submission::create($data);
 
         return redirect('/dashboard');
 
+    }
+
+    public function submissionform()
+    {
+        $submission = Submission::all();
+        return view('submission', compact('submission'));
     }
 }

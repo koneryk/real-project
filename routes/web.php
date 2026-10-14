@@ -16,6 +16,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/test',[BasicController::class,'test'])->name('test');
     Route::post('/logout',[AuthController::class,'logout'])->name('logout');
     Route::post('/dashboard',[BasicController::class,'submission'])->name('submission');
+    Route::get('/submission',[BasicController::class,'submissionform'])->name('submission.form');
 });
 
 
