@@ -23,6 +23,7 @@
 </section>
 <footer>
 А это прсмотр заявок
+    <a href="{{route('main')}}">А это сслыка на dashboard</a>
 </footer>
 </body>
 </html>

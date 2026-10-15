@@ -31,4 +31,9 @@ class BasicController extends Controller
         $submission = Submission::all();
         return view('submission', compact('submission'));
     }
+
+    public function admin(){
+
+        return view('admin');
+    }
 }

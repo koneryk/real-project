@@ -1,2 +1,3 @@
-<?php
-echo Auth::user();
+<pre>
+    {{ print_r(session()->all(), true) }}
+</pre>

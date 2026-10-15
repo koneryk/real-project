@@ -31,6 +31,7 @@
         <button type="submit">Отправить</button>
         <a class="submission" href="{{ route('submission.form') }}">Просмотр заявок</a>
     </form>
+    <a href="{{route('submission.form')}}">Страница просмотра заявок</a>
 </section>
 <footer><p>Делал, конечно же я</p></footer>
 </body>
