@@ -21,7 +21,6 @@ class BasicController extends Controller
         ]);
         $data['time'] .= ':00';
         Submission::create($data);
-
         return redirect('/dashboard');
 
     }

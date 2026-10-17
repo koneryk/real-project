@@ -1,3 +1,4 @@
-<pre>
-    {{ print_r(session()->all(), true) }}
-</pre>
+<?php
+
+
+

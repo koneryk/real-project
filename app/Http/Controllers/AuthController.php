@@ -21,8 +21,8 @@ class AuthController extends Controller
 
         ]);
 
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+        $email = $request['email'];
+        $password = $request['password'];
 
         $user = User::where('email',$email)->first();
         if(Hash::check($password, $user->password)){
@@ -63,7 +63,7 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->route('login.form');
     }
 
 }

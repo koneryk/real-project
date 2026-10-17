@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BasicController;
 use Illuminate\Support\Facades\Route;
@@ -11,12 +12,23 @@ Route::middleware('guest')->group(function () {
     Route::get('/',[AuthController::class,'showloginform'])->name('login.form');
     Route::post('/',[AuthController::class,'login'])->name('login');
 });
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth','role:user'])->group(function () {
     Route::get('/dashboard',[BasicController::class,'main'])->name('main');
     Route::get('/test',[BasicController::class,'test'])->name('test');
-    Route::post('/logout',[AuthController::class,'logout'])->name('logout');
     Route::post('/dashboard',[BasicController::class,'submission'])->name('submission');
     Route::get('/submission',[BasicController::class,'submissionform'])->name('submission.form');
+    Route::fallback(function () {
+        return redirect()->route('main');
+    });
+});
+Route::middleware('auth')->group(function () {
+    Route::post('/logout',[AuthController::class,'logout'])->name('logout');
+});
+Route::middleware(['auth','role:admin'])->group(function () {
+    Route::get('/admin',[AdminController::class,'admin'])->name('admin');
+    Route::fallback(function () {
+        return redirect()->route('admin');
+    });
 });
 
 
