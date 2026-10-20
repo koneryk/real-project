@@ -17,7 +17,6 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->redirectGuestsTo('/');
         $middleware->redirectUsersTo('/dashboard');
-        $middleware->redirectAdminsTo('/dashboard');
         $middleware->alias([
             'role' => CheckRole::class,
         ]);

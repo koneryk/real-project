@@ -33,6 +33,6 @@ class BasicController extends Controller
 
     public function admin(){
 
-        return view('admin');
+        return view('adminForm');
     }
 }

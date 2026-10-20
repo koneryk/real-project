@@ -16,19 +16,24 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email'=>'required|email',
-            'password'=>'required'
-
+            'login'=>'required|min:6',
+            'password'=>'required',
         ]);
 
-        $email = $request['email'];
+        $login = $request['login'];
         $password = $request['password'];
 
-        $user = User::where('email',$email)->first();
+        $user = User::where('login',$login)->first();
         if(Hash::check($password, $user->password)){
-            Auth::attempt(['email' => $email, 'password' => $password]);
+            Auth::attempt(['login' => $login, 'password' => $password]);
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
+            if ($request->user()->role == 'admin') {
+                return redirect()->intended('/admin');
+
+            }
+            else{
+                return redirect()->intended('/dashboard');
+            }
         }
 
         return back()->withErrors([
@@ -45,13 +50,18 @@ class AuthController extends Controller
     }
     public function register(Request $request){
         $data = $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
+            'login'=>'required|min:6',
+            'email'=>'required|email',
+            'password'=>'required',
+            'FIO'=>'required',
+            'telephone'=>'required',
         ]);
         $user = new User();
-        $user->name = $data['name'];
+        $user->login = $data['login'];
         $user->email = $data['email'];
+        $user->password = $data['password'];
+        $user->FIO = $data['FIO'];
+        $user->telephone = $data['telephone'];
         $user->password = Hash::make($data['password']);
         $user->save();
 

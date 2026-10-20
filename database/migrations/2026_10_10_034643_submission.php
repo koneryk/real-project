@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('place');
             $table->Time('time');
             $table->string('pay');
+            $table->string('status')->default('Новая');
 
         });
     }

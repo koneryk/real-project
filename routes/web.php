@@ -26,6 +26,8 @@ Route::middleware('auth')->group(function () {
 });
 Route::middleware(['auth','role:admin'])->group(function () {
     Route::get('/admin',[AdminController::class,'admin'])->name('admin');
+    Route::get('/submission/{id}/edit',[AdminController::class,'subEditAdin'])->name('subEditAdin');
+    Route::post('/submission/{id}/edit',[AdminController::class,'subEditAdin_succes'])->name('subEditAdin_succes');
     Route::fallback(function () {
         return redirect()->route('admin');
     });

@@ -16,6 +16,20 @@
             <button type="submit">Разлогиниться</button>
         </form>
     </section>
+    <section>
+        <div class="">
+            @foreach($submission as $el)
+                <form action="{{route('subEditAdin',['id' => $el->id])}}">
+                    <h2>{{$el->id}}</h2>
+                    <p>{{$el->place}}</p>
+                    <p>{{$el->time}}</p>
+                    <p>{{$el->pay}}</p>
+                    <p>{{$el->status}}</p>
+                    <button type="submit">Редактировать</button>
+                </form>
+            @endforeach
+        </div>
+    </section>
     <footer>
     </footer>
 </body>

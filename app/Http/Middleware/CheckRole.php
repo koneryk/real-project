@@ -19,7 +19,7 @@ class CheckRole
         if(!$user){
             abort(403);
         }
-        if (!in_array($user->role, ['role'],true)) {
+        if (!in_array($user->role, $roles, true)) {
             abort(403, 'Forbidden');
         }
         return $next($request);
