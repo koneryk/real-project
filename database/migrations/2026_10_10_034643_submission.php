@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('submissions', function (Blueprint $table) {
             $table->id();
-            $table->string('place');
+            $table->integer("room_id");
             $table->Time('time');
             $table->string('pay');
             $table->string('status')->default('Новая');

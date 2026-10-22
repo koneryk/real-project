@@ -11,6 +11,7 @@
     <nav>
     </nav>
     <section>
+        <a href="{{route('admin.rooms.add')}}">Проинициизировать аудиторию</a>
         <p>Будущая панель адмиена</p>
         <form action="{{route('logout')}}" method="post">
             <button type="submit">Разлогиниться</button>

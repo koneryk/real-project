@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Room;
 use App\Models\Submission;
 use Illuminate\Http\Request;
+use function Sodium\compare;
 
 class AdminController extends Controller
 {
@@ -29,5 +31,29 @@ class AdminController extends Controller
     public function subEditAdin($id){
         $submission = Submission::findOrFail($id);
         return view('subEditAdin',compact('submission'));
+    }
+
+    public function rooms()
+    {
+        $rooms = Room::all();
+        return view('AdminRoom',compact('rooms'));
+    }
+
+    public function addroom()
+    {
+        return view('addRoom');
+    }
+    public function addformfunction(Request $request){
+        $data = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+        $name = $data['name'];
+        $description = $data['description'];
+        $room = new Room();
+        $room->name = $name;
+        $room->description = $description;
+        $room->save();
+        return redirect('/admin');
     }
 }

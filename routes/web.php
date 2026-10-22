@@ -26,6 +26,9 @@ Route::middleware('auth')->group(function () {
 });
 Route::middleware(['auth','role:admin'])->group(function () {
     Route::get('/admin',[AdminController::class,'admin'])->name('admin');
+    Route::get('/admin/rooms',[AdminController::class,'rooms'])->name('admin.rooms');
+    Route::get('/admin/rooms/add',[AdminController::class,'addroom'])->name('admin.rooms.add');
+    Route::post('/admin/rooms/add',[AdminController::class,'addformfunction'])->name('admin.rooms.add.function');
     Route::get('/submission/{id}/edit',[AdminController::class,'subEditAdin'])->name('subEditAdin');
     Route::post('/submission/{id}/edit',[AdminController::class,'subEditAdin_succes'])->name('subEditAdin_succes');
     Route::fallback(function () {

@@ -21,7 +21,12 @@
 
     <form action="{{route('submission')}}" method="post">
         <p>Формирование заявки</p>
-        <input type="text" placeholder="Помещение" name="place" id="place">
+        {{--<input type="text" placeholder="Помещение" name="place" id="place">--}}
+        <select name="place" id="place">
+            @foreach($rooms as $room)
+                <option>{{$room->name}}</option>
+            @endforeach
+        </select>
         <input type="time" placeholder="Время" name="time" id="time">
         <p>Способы оплаты</p>
         <select name="pay" id="pay">
