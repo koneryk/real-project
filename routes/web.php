@@ -13,12 +13,12 @@ Route::middleware('guest')->group(function () {
     Route::post('/',[AuthController::class,'login'])->name('login');
 });
 Route::middleware(['auth','role:user'])->group(function () {
-    Route::get('/dashboard',[BasicController::class,'main'])->name('main');
-    Route::get('/test',[BasicController::class,'test'])->name('test');
-    Route::post('/dashboard',[BasicController::class,'submission'])->name('submission');
     Route::get('/submission',[BasicController::class,'submissionform'])->name('submission.form');
+    Route::get('/test',[BasicController::class,'test'])->name('test');
+    Route::post('/dashboard',[BasicController::class,'submission'])->name('submission.create.post');
+    Route::get('/dashboard',[BasicController::class,'submission_create'])->name('submission.create.form');
     Route::fallback(function () {
-        return redirect()->route('main');
+        return redirect()->route('submission.create.form');
     });
 });
 Route::middleware('auth')->group(function () {

@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class BasicController extends Controller
 {
-    public function main(){
+    public function submission_create(){
         $rooms = Room::all();
-        return view('main',compact('rooms'));
+        return view('submissions.submission_create',compact('rooms'));
     }
     public function test(){
         return view('test');
@@ -30,7 +30,7 @@ class BasicController extends Controller
     public function submissionform()
     {
         $submission = Submission::all();
-        return view('submission', compact('submission'));
+        return view('submissions.submission_view', compact('submission'));
     }
 
     public function admin(){

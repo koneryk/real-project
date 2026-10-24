@@ -1,4 +1,12 @@
-    <form method="POST" action="{{route('subEditAdin_succes',['id'=>$submission->id])}}">
+@extends('layouts.main')
+
+@section('title')
+    Редактирование заявки
+@endsection
+
+@section('content')
+
+<form method="POST" action="{{route('subEditAdin_succes',['id'=>$submission->id])}}">
         @csrf
         <h2>{{$submission->id}}</h2>
         <p>{{$submission->place}}</p>
@@ -12,3 +20,5 @@
         <button type="submit">Сохранить</button>
     </form>
     <form action="{{redirect('/admin')}}"><button type="submit">Назад</button></form>
+
+@endsection

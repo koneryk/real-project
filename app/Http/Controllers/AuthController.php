@@ -32,7 +32,7 @@ class AuthController extends Controller
 
             }
             else{
-                return redirect()->intended('/dashboard');
+                return redirect()->intended('/submissions');
             }
         }
 

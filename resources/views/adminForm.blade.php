@@ -1,18 +1,11 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Панель админа</title>
-</head>
-<body>
-    <nav>
-    </nav>
+@extends('layouts.main')
+
+@section('title')
+    Просмотр заявок
+@endsection
+@section('content')
     <section>
         <a href="{{route('admin.rooms.add')}}">Проинициизировать аудиторию</a>
-        <p>Будущая панель адмиена</p>
         <form action="{{route('logout')}}" method="post">
             <button type="submit">Разлогиниться</button>
         </form>
@@ -31,7 +24,4 @@
             @endforeach
         </div>
     </section>
-    <footer>
-    </footer>
-</body>
-</html>
+@endsection

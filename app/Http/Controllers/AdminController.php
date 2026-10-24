@@ -30,7 +30,7 @@ class AdminController extends Controller
     }
     public function subEditAdin($id){
         $submission = Submission::findOrFail($id);
-        return view('subEditAdin',compact('submission'));
+        return view('submissions.edit',compact('submission'));
     }
 
     public function rooms()
